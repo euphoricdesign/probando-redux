@@ -27,7 +27,7 @@ export const fetchPokemons = () => {
             dispatch(successGetPokemons(resultado)) // successGetPokemons, que va a tener como argumento el resultado
             // ya que en este caso si va necesitar ese payload. Esto le va a informar a la store que el resultado de traer pokemons de una API en la nube
             // ha sido exitosa  y le traemos el "payload" o la información. Los reducers son los que se van a encargar de terminar esta tarea 
-            // Vamos a App para probar lo que acabamos de hacer de ste lado. 
+            // Vamos a App para probar lo que acabamos de hacer de este lado. 
         })
     }
 }
@@ -37,3 +37,6 @@ export const fetchPokemons = () => {
 // La tarea: mandar a llamar a la API de pokemons (una api fake de un listado de pokemons). 
 
 // Vamos a trabajar en colocar la lista dentro de react js, simplemente mostrar la información en el componente que estamos trabajando: App.
+
+// La función fetchPokemons no puede ser llamada de estar manera : fetchPokemons() tendríamos que hacer algo así : fetchPokemons()()
+// ¿Quién se encarga de hacer esa segunda llamada? redux-thunk. 

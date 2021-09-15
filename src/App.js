@@ -1,22 +1,19 @@
-import React, {useEffect}  from "react"; 
-
-import {useSelector, useDispatch} from 'react-redux';
-
-// useSelector te ayuda a extraer información del state de la store de Redux. useSelector es llamado cada vez que el componente hook se actualiza.
-// Cuando una acción es disparada por el dispatch, useSelector compara el valor anterior con el siguiente , en caso de ser diferentes forza el re rendering. 
-
-// Importamos useDispatch desde react-redux que es lo que utilizo para mandar acciones hacia la store de redux y que las va a interceptar el 
-// middleware que acabo de instalar, redux-thunk. 
-
-// También importamos useEffect desde React. Al usar este Hook, le estamos indicando a React que el componente tiene
-// que hacer algo después de renderizarse. 
+import React, { useEffect, useState }  from "react"; 
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchPokemons } from './redux/actions/pokemon'
 
 function App(props) {
   const dispatch = useDispatch(); // Referenciamos dispatch.
+  const [pokemons, setPokemons] = useState([]) // Declaramos una variable de estado llamada pokemons. 
 
   useEffect(() => {
     // Acá vamos a llamar la acción a traves del dispatch
-    
+    if (pokemons.length === 0) { 
+      dispatch(fetchPokemons) // Este dispatch es del front, es del componente y al dispararlo me manda a llamar la función que acabamos de declarar en
+      // pokemon.js, que esta utilizando thunk.
+      // Entonces cuando fetchPokemons es llamada no es ejecutada por redux es ejecutado por el middleware, que es la función que retorna fetchPokemon
+      setPokemons([{},{}]) // Para evitar ciclarnos por aquí, ya que de momento no vamos a crear ningun reducer 
+    }
   })
 
   return (
