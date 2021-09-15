@@ -1,19 +1,24 @@
-import React from "react";
-// Vamos a hacer un import de un modulo de react-redux: {useSelector}. 
+import React, {useEffect}  from "react"; 
 
-// useSelector es una función que toma el estado actual como argumento y devuelve los datos que desee de él. Es muy similar
-// a mapStateToProps() y le permite almacenar los valores devueltos dentro de una variable dentro del alcance de sus
-// componentes funcionales en lugar de pasar como accesorios.
+import {useSelector, useDispatch} from 'react-redux';
 
-// Use selector recibe un callback y trae el resultado de la store o el state global de la store 
+// useSelector te ayuda a extraer información del state de la store de Redux. useSelector es llamado cada vez que el componente hook se actualiza.
+// Cuando una acción es disparada por el dispatch, useSelector compara el valor anterior con el siguiente , en caso de ser diferentes forza el re rendering. 
 
+// Importamos useDispatch desde react-redux que es lo que utilizo para mandar acciones hacia la store de redux y que las va a interceptar el 
+// middleware que acabo de instalar, redux-thunk. 
 
-import {useSelector} from 'react-redux';
+// También importamos useEffect desde React. Al usar este Hook, le estamos indicando a React que el componente tiene
+// que hacer algo después de renderizarse. 
 
 function App(props) {
-  const data = useSelector(state => {
-    console.log(state) // Esto nos retorna {} un objeto vacío efectivamente, ya que es lo que nos devuelve la funcion reducer. 
+  const dispatch = useDispatch(); // Referenciamos dispatch.
+
+  useEffect(() => {
+    // Acá vamos a llamar la acción a traves del dispatch
+    
   })
+
   return (
     <div>
       
@@ -23,6 +28,4 @@ function App(props) {
 
 export default App;
 
-
-// De esta manera vemos que nuestro proyecto ya se encuntra conectado a la store de redux y como ya lo mencionamos los reducer son los que van
-// a actualizar su estado. 
+// Dentro de redux vamos a crear una nueva carpeta llamada actions y dentro de la misma vamos a crear el archivo pokemon.js
